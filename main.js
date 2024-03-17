@@ -1,62 +1,58 @@
-const options = ["rock", "paper", "scissors"];
-let userScore = 0;
+// Conseguir todos los elementos de HTML y guardarlos en sus respectivas variables.
+
+let playerChoice = document.querySelector(".score__player-choice");
+let computerChoiceDisplay = document.querySelector(".score__computer-choice");
+let playerCount = document.querySelector(".score__player-count");
+let computerCount = document.querySelector(".score__computer-count");
+const userChoices = document.querySelectorAll(".choices__btn");
+let playerScore = 0;
 let computerScore = 0;
-let score = 0;
 
+// Crear una array con las opciones del juego.
+const options = ["✊", "✋", "✌"];
+
+// Crear una funcion con la opcion que escoge el computador.
 const getComputerChoice = () => {
-  const indexOfOption = Math.trunc(Math.random() * options.length);
-  const computerSelection = options[indexOfOption];
-  return computerSelection;
+  const randomIndex = Math.floor(Math.random() * options.length);
+  const computerChoice = options[randomIndex];
+  computerChoiceDisplay.textContent = computerChoice;
+  return computerChoice;
 };
 
-const getPlayerSelection = () => {
-  let playerSelection = prompt(
-    "Select an option between: Rock, Paper or Scissors"
-  );
-  playerSelection = playerSelection.toLowerCase();
+// Agregarle un eventListener al momento de que el usuario hace click en algunas de las opciones.
+userChoices.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    playerChoice.textContent = choice.textContent;
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice.textContent, computerChoice);
+  });
+});
 
-  if (options.includes(playerSelection)) {
-    alert(`You choose: ${playerSelection}`);
-    return playerSelection;
+// Checkear el ganador de cada round
+function playRound(playerChoice, computerChoice) {
+  if (
+    (playerChoice === "✊" && computerChoice === "✌") ||
+    (playerChoice === "✋" && computerChoice === "✊") ||
+    (playerChoice === "✌" && computerChoice === "✋")
+  ) {
+    ++playerScore;
+    playerCount.textContent = `Player: ${playerScore}`;
+  } else if (playerChoice === computerChoice) {
+    console.log(`That's a tie`);
   } else {
+    ++computerScore;
+    computerCount.textContent = `Computer: ${computerScore}`;
+  }
+
+  checkWinner(playerScore, computerScore);
+}
+
+function checkWinner(playerScore, computerScore) {
+  if (playerScore === 5 && computerScore < 5) {
+    alert(`You are the winner!, Press F5 on your keyboard to reset the score`);
+  } else if (computerScore === 5 && playerScore < 5) {
     alert(
-      `The option: ${playerSelection} is not valid. Please press cancel to restart the game`
+      `Computer is the winner¡¡, Press F5 on your keyboard to reset the score`
     );
-    return;
   }
-};
-
-const playGame = () => {
-  function playRound(playerSelection, computerSelection) {
-    if (
-      (playerSelection === "rock" && computerSelection === "scissors") ||
-      (playerSelection === "paper" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "paper")
-    ) {
-      alert(
-        `You chose: ${playerSelection} - Computer chose: ${computerSelection}. You are the winner!`
-      );
-      ++userScore;
-    } else if (playerSelection === computerSelection) {
-      alert(
-        `You chose: ${playerSelection} - Computer chose: ${computerSelection}. That's a tie`
-      );
-    } else {
-      alert(
-        `You chose: ${playerSelection} - Computer chose: ${computerSelection}.  Computer is the winner`
-      );
-      ++computerScore;
-    }
-
-    score = `You: ${userScore} - Computer: ${computerScore}`;
-    return console.log(score);
-  }
-
-  const playerSelection = getPlayerSelection();
-  const computerSelection = getComputerChoice();
-  playRound(playerSelection, computerSelection);
-};
-
-while (userScore !== 5 && computerScore !== 5) {
-  playGame();
 }
