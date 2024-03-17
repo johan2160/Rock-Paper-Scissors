@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+:root {
+  --text: #e7efef;
+  --background: #24262f;
+  --secondary: #1d1d21;
+  --accent: #806a9a;
+
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+header {
+  background-color: var(--secondary);
+}
+
+h1 {
+  padding: 3rem 0;
+  color: var(--accent);
+  font-size: 2.5rem;
+  font-family: "Press Start 2P", system-ui;
+  text-align: center;
+}
+
+main {
+  margin: 4.5rem 1rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+  margin-top: 4rem;
+  padding-inline: 1.5rem;
+}
+
+.score__player,
+.score__computer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.score__player-choice,
+.score__computer-choice {
+  font-size: 3.5rem;
+}
+
+.score__player-count,
+.score__computer-count {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.choices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.choices__btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: var(--secondary);
+  font-size: 3.5rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.choices__btn:hover {
+  background: #2f2f35;
+}
+
+.choices__btn:active {
+  background: var(--accent);
+}
+
+@media (min-width: 485px) {
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  .score__player-choice,
+  .score__computer-choice {
+    font-size: 4rem;
+  }
+
+  .score__player-count,
+  .score__computer-count {
+    font-size: 1.8rem;
+  }
+
+  .choices__btn {
+    padding: 1.5rem 2.5rem;
+    font-size: 4.8rem;
+  }
+}
+
+@media (min-width: 1020px) {
+  h1 {
+    font-size: 4.2rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  .score__player-choice,
+  .score__computer-choice {
+    font-size: 6rem;
+  }
+
+  .score__player-count,
+  .score__computer-count {
+    font-size: 2.4rem;
+  }
+
+  .choices {
+    gap: 4.5rem;
+  }
+
+  .choices__btn {
+    padding: 2rem 3.2rem;
+    font-size: 5.2rem;
+  }
+}
